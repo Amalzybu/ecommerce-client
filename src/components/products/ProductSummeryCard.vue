@@ -1,11 +1,19 @@
 <template>
-    <div class="card">
-        <h3>{{product.name}}</h3>
-        <h5 class="price">${{product.price.toFixed(2)}}</h5>
-        <p class="description"> Description : {{description}}</p>
-        <p class="text-muted">{{product.category}}</p>
-        <button class="view-product-button" @click="$emit('view-product',product)">View Product </button>
-    </div>
+
+    
+<div class="col-sm-6 col-lg-3">
+                        <div class="card shadow"><img class="card-img-top w-100 d-block" :src="'http://amallama.alwaysdata.net/assets/img/products/Random/'+product.image+''" v-bind:alt="pic">
+                            <div class="card-body">
+                                <h6 class="card-title oneLine"><strong>{{product.name}}</strong><br></h6>
+                                <h6 class="text-muted card-subtitle mb-2">Description : {{description}}</h6>
+                                <div class="row">
+                                    <div class="col-md-6"><button class="btn btn-outline-dark btn-block" type="button"><i class="icon-handbag" style="font-size: 18px;"></i></button></div>
+                                    <div class="col-md-6"><button class="btn btn-primary btn-block" type="button" @click="$emit('view-product',product)"><i class="la la-shopping-cart" style="font-size: 24px;"></i></button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+   
 </template>
 
 <script>
@@ -14,47 +22,9 @@
         computed:{
             description(){
                 return this.product.description.substring(0,150)
-            }
-        }
+            },
+           
     }
+
+}
 </script>
-<style lang="scss">
-    .card {
-        width:80%;
-        margin:10%;
-        padding:10px;
-        border-radius:5px;
-        background-color:white;
-        box-shadow:0 0 5px grey;
-
-        h5.price{
-            color:grey;
-        }
-
-        p.description{
-            font-size: .85rem;
-        }
-
-        p.text-muted{
-            color:gray;
-        }
-
-        button.view-product-button{
-            padding:10px;
-            background-color:rgb(79,160,187);
-            border:none;
-            color:white;
-            font-weight:bold;
-            font-size:1.15rem;
-            border-radius:5px;
-            cursor:pointer;
-        }
-    }
-
-    @media (min-width:500px){
-        .card {
-            width: 350px;
-            margin: 10px;
-        }
-    }
-</style>

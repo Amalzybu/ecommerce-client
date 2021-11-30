@@ -16,6 +16,15 @@ export default createStore({
       if(item) return item.quantity
       else return null
     },
+
+    cartItems:state =>{
+      return state.cart
+    },
+    cartTotal:state=>{
+      return state.cart.reduce((a,b)=> a+(b.price * b.quantity),0)
+    }
+
+
     
 
   },
@@ -46,7 +55,6 @@ export default createStore({
       updateLocalStorage(state.cart)
     },
     updateCartFromLocalStorage(state) {
-      console.log("base url "+process.env.VUE_APP_BASE_URL)
       const cart = localStorage.getItem('cart')
       if(cart){
         state.cart = JSON.parse(cart)
