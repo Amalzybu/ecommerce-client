@@ -8,7 +8,7 @@
                                 <h6 class="text-muted card-subtitle mb-2">Description : {{description}}</h6>
                                 <div class="row">
                                     <div class="col-md-6"><button class="btn btn-outline-dark btn-block" type="button"><i class="icon-handbag" style="font-size: 18px;"></i></button></div>
-                                    <div class="col-md-6"><button class="btn btn-primary btn-block" type="button" @click="$emit('view-product',product)"><i class="la la-shopping-cart" style="font-size: 24px;"></i></button></div>
+                                    <div class="col-md-6"><button class="btn btn-primary btn-block" type="button" @click="addToCart()"><i class="la la-shopping-cart" style="font-size: 24px;"></i></button></div>
                                 </div>
                             </div>
                         </div>
@@ -19,6 +19,13 @@
 <script>
     export default {
         props: ['product'],
+        methods:{
+            addToCart(){
+                
+                this.$store.commit('addToCart',this.product)
+            },
+           
+        },
         computed:{
             description(){
                 return this.product.description.substring(0,150)

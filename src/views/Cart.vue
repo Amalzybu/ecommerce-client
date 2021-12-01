@@ -11,12 +11,13 @@ const { default: items } = require("../data/items");
         :key="product.id" 
         :product="product" />
 
-        <CartSummaryPaymentCard 
-        />
+       
 
        
     </div>
     <div class="col-12 col-lg-6">
+    <CartSummaryPaymentCard 
+        />
      </div>   
 </div>
 </div> 

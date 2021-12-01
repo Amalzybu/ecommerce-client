@@ -25,11 +25,7 @@
                     <h3>Top Products</h3>
                 </div>
                 <div class="row">
-                <ProductDescriptionDrawer
-            :product="product"
-            :active="active.product_drawer"
-            v-on:close-product-drawer="closeProductDrawer($event)"
-            />	
+	
                   <ProductSummeryCard 
                     v-for="product in items"
                     :key="product.id"
@@ -46,7 +42,7 @@
 <script>
 
 import ProductSummeryCard from '../components/products/ProductSummeryCard.vue'
-import ProductDescriptionDrawer from '../components/products/ProductDescriptionDrawer.vue'
+{/* import ProductDescriptionDrawer from '../components/products/ProductDescriptionDrawer.vue' */}
 import axios from 'axios';
 
 
@@ -63,7 +59,6 @@ export default
   name: 'Home',
   components: {
     ProductSummeryCard,
-    ProductDescriptionDrawer
     
   },
   data()
@@ -82,7 +77,7 @@ export default
 
 
     axios
-      .get('http://localhost:3000/api/public/products')
+      .get('http://amallama.alwaysdata.net/api/public/products')
       .then(response => {
         this.items = response.data.data
       })
@@ -91,12 +86,14 @@ export default
   {
     viewProduct(product){
       this.product=product
+      console.log("product  "+JSON.stringify(product))
       this.active.product_drawer=true
       console.log("product  "+this.product)
     },
     closeProductDrawer(){
       this.active.product_drawer=false
-    }
+    },
+   
 
   }
 }

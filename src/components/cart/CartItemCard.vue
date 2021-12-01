@@ -10,10 +10,10 @@
                                 <div class="row">
                                     <div class="col-12 col-sm-6">
                                         <form>
-                                            <div class="form-group"><input class="form-control" type="number" placeholder="Qty" min="1"   v-model="item_quantity" name="qty"></div>
+                                            <div class="form-group"><input class="form-control" type="number" placeholder="Qty" min="1"   v-model="mutableList.quantity" name="qty"></div>
                                         </form>
                                     </div>
-                                    <div class="col"><button class="btn btn-outline-dark btn-block" type="submit">Buy Later</button></div>
+                                    <div class="col"><button class="btn btn-outline-dark btn-block" @click='removeItemFromCart()' >Buy Later</button></div>
                                 </div>
                             </div>
                         </div>
@@ -26,6 +26,17 @@
 <script>
     export default {
         props: ['product'],
+        data: function () {
+            return {
+                mutableList: this.product
+            }
+        },
+        methods:{
+           
+            removeItemFromCart(){
+                this.$store.commit('removeItemFromCart',this.product)
+            }
+        },
         computed:{
             description(){
                 return this.product.description.substring(0,120)
