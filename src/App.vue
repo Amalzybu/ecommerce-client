@@ -7,7 +7,8 @@
                
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item"><router-link class="nav-link text-center" to="/"><i class="icon-home" style="font-size: 18px;"></i><br></router-link></li>
-                    <DropDown />
+                    <DropDown v-if="get_user" />
+                    <DropDownNoUser v-if="!get_user" />
                     <li class="nav-item"><router-link class="nav-link text-center" to="/cart"><i class="icon-bag" style="font-size: 18px;"></i><span class="badge badge-dark">{{itemCount}}</span><br></router-link></li>
                 </ul>
         </div>
@@ -34,6 +35,8 @@ import "@/assets/css/Paralax-Hero-Banner-1.css";
 import "@/assets/css/styles.css";
 import "@/assets/bootstrap/js/bootstrap.min.js";
 import DropDown from './components/header/DropDown.vue'
+import DropDownNoUser from './components/header/DropDownNoUser.vue'
+
 
 
 
@@ -61,12 +64,17 @@ import DropDown from './components/header/DropDown.vue'
       }
     },
     components:{
-      DropDown
+      DropDown,
+      DropDownNoUser
     },
     computed:{
       itemCount() {
           return this.$store.getters.cartItems.length
-      }
+      },
+      get_user(){
+        return this.$store.getters.getUser
+      },
+      
       
   }
   }
