@@ -40,7 +40,8 @@
                         <hr style="background-color: #323232;">
                         <div class="row" v-if="cart_total > 0">
                             <div class="col-12 col-sm-6"><button class="btn btn-outline-dark btn-block" type="submit">Cash On Delivery</button></div>
-                            <div class="col text-right"><router-link to="/address"><button class="btn btn-primary btn-block" type="button">Pay Now</button></router-link></div>
+                            <div v-if="get_user" class="col text-right"><router-link to="/address"><button class="btn btn-primary btn-block" type="button">Pay Now</button></router-link></div>
+                            <div v-else class="col text-right"><router-link to="/login"><button class="btn btn-primary btn-block" type="button">Login</button></router-link></div>
                         </div>
                     </div>
          </div>
@@ -58,9 +59,13 @@
             },
             item_cost(){
                 return this.product.price*this.product.quantity
-            }
+            },
+            get_user(){
+                return this.$store.getters.getUser
+            },
            
         }
+        
     }
 </script>
 
